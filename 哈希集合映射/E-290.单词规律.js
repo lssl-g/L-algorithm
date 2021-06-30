@@ -12,7 +12,7 @@ const wordPattern = function (pattern, s) {
       if (map.get(pattern[i]) === arr[i]) continue
       return false
     } else {
-      for (let v of map.values()) {
+      for (const v of map.values()) {
         if (v === arr[i]) return false
       }
       map.set(pattern[i], arr[i])
