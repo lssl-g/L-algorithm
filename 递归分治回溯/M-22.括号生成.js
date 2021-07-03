@@ -4,21 +4,18 @@
  */
 const generateParenthesis = function (n) {
   const res = []
-  function f (curr, k, toRightNum, toLeftNum) {
-    curr += k
-    if (toLeftNum > toRightNum || toRightNum > n) return
-    if (k === '(') toRightNum++
-    if (k === ')') toLeftNum++
+  function f (curr, toRightNum, toLeftNum) {
     if (curr.length === 2 * n) {
       if (toRightNum === toLeftNum) res.push(curr)
       else return
     }
-    f(curr, '(', toRightNum, toLeftNum)
-    f(curr, ')', toRightNum, toLeftNum)
+    if (toLeftNum > toRightNum || toRightNum > n) return
+    f(curr + '(', toRightNum + 1, toLeftNum)
+    f(curr + ')', toRightNum, toLeftNum + 1)
   }
-  f('', '(', 0, 0)
+  f('', 0, 0)
   return res
 }
 
-const res = generateParenthesis(3)
+const res = generateParenthesis(2)
 console.log(res)
